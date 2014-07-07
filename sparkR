@@ -28,7 +28,7 @@ cat > /tmp/sparkR.profile << EOF
   Sys.setenv(NOAWT=1)
   .libPaths(c(paste(projecHome,"/lib", sep=""), .libPaths()))
   require(SparkR)
-  sc <- sparkR.init(Sys.getenv("MASTER", unset = "local"))
+  sc <- sparkR.init(Sys.getenv("MASTER", unset = "local"), sparkEnvir=list(spark.executor.memory=Sys.getenv("SPARK_EXECUTOR_MEMORY", unset = "2g"), spark.executor.uri=Sys.getenv("SPARK_EXECUTOR_URI", unset = "*** SET SPARK_EXECUTOR_URI please! ***")))
   assign("sc", sc, envir=.GlobalEnv)
   cat("\n Welcome to SparkR!")
   cat("\n Spark context is available as sc\n")
